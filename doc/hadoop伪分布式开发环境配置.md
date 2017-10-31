@@ -39,42 +39,34 @@ hadoop可以运行在三种模式下：
   1. cd $HADOOP_HOME/etc/hadoop
   2. vim hadoop-env.sh  
   ![4](https://github.com/CraftHeart/hadoop/blob/master/pic/%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8Fjava%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.png)
-  3. 依次修改以下文件及其内容：
-  <?xml version="1.0"?>  
-  <!-- core-site.xml -->  
-  <configuration>  
-  <property>  
-  <name>fs.defaultFS</name>  
-  <value>hdfs://localhost/</value>  
-  </property>  
-  </configuration>  
-  <?xml version="1.0"?>  
-  <!-- hdfs-site.xml -->  
-  <configuration>  
-  <property>  
-  <name>dfs.replication</name>  
-  <value>1</value>  
-  </property>  
-  </configuration>  
-  <?xml version="1.0"?>  
-  <!-- mapred-site.xml -->  
-  <configuration>  
-  <property>  
-  <name>mapreduce.framework.name</name>  
-  <value>yarn</value>  
-  </property>  
-  </configuration>    
-  <?xml version="1.0"?>  
-  <!-- yarn-site.xml -->  
-  <configuration>  
-  <property>  
-  <name>yarn.resourcemanager.hostname</name>  
-  <value>localhost</value>  
-  </property>  
-  <property>  
-  <name>yarn.nodemanager.aux-services</name>  
-  <value>mapreduce_shuffle</value>  
-  </property>  
-  </configuration>  
+  3. 依次修改以下文件及其内容：  
+    ![5](https://github.com/CraftHeart/hadoop/blob/master/pic/hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E6%9B%B4%E6%94%B9.png)  
+  4. 修改好配置文件后，对HDFS集群进行格式化，HDFS集群是用来存储数据的.  
+     在命令行执行：hdfs namenode -format,如果执行成功会看到：  
+    ![6](https://github.com/CraftHeart/hadoop/blob/67c72443312bdf71b97a3d3ac571c60d3984abe7/pic/hadoop-format.png)
+  5. 启动hdfs集群：  
+    ![7](https://github.com/CraftHeart/hadoop/blob/67c72443312bdf71b97a3d3ac571c60d3984abe7/pic/start-dfs.png)  
+    启动YARN集群：  
+    ![8](https://github.com/CraftHeart/hadoop/blob/67c72443312bdf71b97a3d3ac571c60d3984abe7/pic/start-yarn.png)  
+    启动作业历史服务器：  
+    ![9](https://github.com/CraftHeart/hadoop/blob/67c72443312bdf71b97a3d3ac571c60d3984abe7/pic/jobservice.png)  
+    查看以上进程是否正常运行，在命令行执行jps，正常情况会看到：  
+    ![10](https://github.com/CraftHeart/hadoop/blob/67c72443312bdf71b97a3d3ac571c60d3984abe7/pic/jps.png)   
+  6. 访问HDFS和YARN集群相对应的WEB监控页面：  
+    在浏览器输入localhost:50070，可以访问hdfs集群web：    
+    ![11](https://github.com/CraftHeart/hadoop/blob/67c72443312bdf71b97a3d3ac571c60d3984abe7/pic/8088.png)  
+    在浏览器输入localhost:8088，可以访问Yarn集群web：  
+    ![12](https://github.com/CraftHeart/hadoop/blob/67c72443312bdf71b97a3d3ac571c60d3984abe7/pic/50070.png)    
+    需要说明的是，也可以通过远程访问者两个web，将localhost改为这台机器对应的ip即可。
+    若无法远程访问8088端口，在yarn-site.xml文件下添加：  
+     ```
+        <property>
+              <name>yarn.resourcemanager.webapp.address</name>
+              <value>0.0.0.0:8088</value>
+        </property>
+     ```
 
+  
+至此，hadoop伪分布式开发环境安装成功！
+    
 
