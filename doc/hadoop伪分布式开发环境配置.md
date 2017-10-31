@@ -12,4 +12,6 @@
 我们需要把jdk安装目录下的lib子目录中的dt.jar和tools.jar设置到CLASSPATH中，当然，当前目录“.”也必须加入到该变量中。
 - JAVA_HOME环境变量。它指向jdk的安装目录，Eclipse/NetBeans/Tomcat等软件就是通过搜索JAVA_HOME变量来找到并使用安装好的jdk。
 在用户的.bashrc文件中添加以下几行：  
-![1](D:\repo\java\hadoop\pic\java环境变量.png)
+![1](https://github.com/CraftHeart/hadoop/blob/master/pic/java%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F.png)  
+3. 测试环境是否安装正确：  
+![2](https://github.com/CraftHeart/hadoop/blob/master/pic/java%E7%8E%AF%E5%A2%83%E6%B5%8B%E8%AF%95.png)  
